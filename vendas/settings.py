@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'KGL"_vr69*4-xMH`QA7HBm0x-Cs<j}G£x_/uG.>5*Ssh-l£FK8'
 
-DEBUG = false
+DEBUG = False
 
 ALLOWED_HOSTS = '*'
 
