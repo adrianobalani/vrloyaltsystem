@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Lista de Marcas</h1>
+
+{% if object_list %}
+	<div class="row">
+		<div class="col-sm-6 col-md-6">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Marca</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for brand in object_list %}
+					{% if brand.id <= 10 %}
+						<tr>
+							<td>{{ brand.brand }}</td>
+						</tr>
+					{% endif %}
+				{% empty %}
+					<p>Sem itens na lista.</p>
+				</tbody>
+				{% endfor %}
+			</table>
+		</div>
+
+		<div class="col-sm-6 col-md-6">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Marca</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for brand in object_list %}
+					{% if brand.id > 10 %}
+						<tr>
+							<td>{{ brand.brand }}</td>
+						</tr>
+					{% endif %}
+				</tbody>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+{% else %}
+  <p class="alert alert-warning">Sem itens na lista.</p>
+{% endif %}
+
+<hr>
+<div>
+<h3><b>Total:</b> {{ object_list|length }} marca{{ object_list|length|pluralize }}</h3>
+</div>
+
+{% if object_list %}
+  <!-- pagination -->
+  {% include "_pagination.html" %}
+{% endif %}
+
+{% endblock content %}
