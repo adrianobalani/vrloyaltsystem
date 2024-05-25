@@ -7,6 +7,7 @@ app_name = 'core'
 
 customer_patterns = [
     path('', view=c.CustomerList.as_view(), name='customer_list'),
+    path('add/', view=c.CustomerCreateView.as_view(), name='customer_add'),
     path('<int:pk>/', view=c.CustomerDetail.as_view(), name='customer_detail'),
     path('edit/<int:pk>/', view=c.CustomerUpdate.as_view(), name='customer_update'),
 ]
@@ -27,6 +28,7 @@ sale_patterns = [
 
 seller_patterns = [
     path('', view=c.SellerList.as_view(), name='seller_list'),
+    path('add/', view=c.SellerCreateView.as_view(), name='seller_add'),
     path('<int:pk>/', view=c.SellerDetail.as_view(), name='seller_detail'),
 ]
 
