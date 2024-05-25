@@ -2,11 +2,12 @@ from django.shortcuts import render, resolve_url
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.db.models import F, Count
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.views.generic.edit import UpdateView
 from django.forms.models import inlineformset_factory
+from django.views import View
 from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
-from .forms import SaleForm, SaleDetailForm
+from .forms import SaleForm, SaleDetailForm, CustomerForm, SellerForm
 from .mixins import CounterMixin, FirstnameSearchMixin
 
 
@@ -14,6 +15,18 @@ home = TemplateView.as_view(template_name='index.html')
 
 about = TemplateView.as_view(template_name='about.html')
 
+
+class CustomerCreateView(CreateView):
+    template_name = 'core/person/seller_add.html'
+    model = Customer
+    form_class = CustomerForm
+    success_url = reverse_lazy('website:customer_add')
+
+class SellerCreateView(CreateView):
+    template_name = 'core/person/customer_add.html'
+    model = Seller
+    form_class = SellerForm
+    success_url = reverse_lazy('website:seller_add')    
 
 class CustomerList(CounterMixin, FirstnameSearchMixin, ListView):
     template_name = 'core/person/customer_list.html'
@@ -133,3 +146,4 @@ class SaleDetailView(DetailView):
         context['count'] = sd.count()
         context['Itens'] = sd
         return context
+
